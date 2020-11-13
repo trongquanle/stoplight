@@ -1,8 +1,9 @@
 openapi: 3.0.0
-description: Định nghĩa các ví dụ trả về của lỗi http code 500
+contact: ok
 info:
   title: Ví dụ trả về lỗi 400
   version: '1.0'
+  description: Định nghĩa các ví dụ trả về của lỗi http code 500
 tags:
   - ExampleCommon
 components:

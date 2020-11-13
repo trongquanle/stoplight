@@ -4,14 +4,14 @@ info:
   description: Api này cho phép Merchant gửi 1 yêu cầu thanh toán đơn hàng JETPAY.
   version: '1.0'
 servers:
-- url: http://localhost:3000/api/v1
-  desciption: môi trường local
+  -url: http://localhost:3000/api/v1
+  -desciption: môi trường local
 paths:
   /order:
     post:
       summary: Nhận đơn hàng mà phía Merchant gửi lên, sau đó chuyển hướng sang phía api cổng thanh toán Alepay
       tags:
-      - order
+        - order
       requestBody:
         content:
           application/json:
@@ -25,8 +25,64 @@ paths:
         '500':
           $ref: '#components/response500'
       operationId: create-order
+  /get-transaction-info:
+    post:
+      summary: Lấy thông tin giao dịch theo mã giao dịch
+      tags:
+        - transaction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                transactionCode: 
+                  description: 'Mã của giao dịch'
+                  type: string
+              required:
+                - description
+      response:
+        '200': 
+          description: pet response
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          $ref: '../common/models/responses.v1.yaml/components/responses/400'
+        '500':
+          $ref: '../common/models/responses.v1.yaml/components/responses/500'
+      operationId: create-order
+  /get-transaction-history :
+    post:
+      summary: Lấy thông tin giao dịch theo ngày đến ngày
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                transactionCode: 
+                  description: 'Mã của giao dịch'
+                  type: string
+              required:
+                - description
+      response:
+        '200': 
+          description: pet response
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          $ref: '../common/models/responses.v1.yaml/components/responses/400'
+        '500':
+          $ref: '../common/models/responses.v1.yaml/components/responses/500'
+      operationId: create-order
 components:
   schemas:
     orderRequest:
       $ref: models/orderRequest.v1-yaml
-
+      

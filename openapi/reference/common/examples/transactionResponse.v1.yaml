@@ -1,0 +1,30 @@
+openapi: '3.0.0'
+info:
+  title: transactionResponse
+  version: '1.0'
+servers:
+- url: http://localhost:3000
+paths: {}
+components:
+  200GetTransactionByCode:
+    TransactionCode: String Mã giao dịch tại Alepay 
+    OrderCode String: Mã đơn hàng của Merchant 
+    Amount: double Giá trị đơn hàng 
+    Currency: String Loại tiền tệ 
+    BuyerEmail: String Email người mua hàng 
+    BuyerPhone: String Số điện thoại người mua 
+    CardNumber: String Thông tin thẻ khách hàng (6 số đầu và 4 số cuối) 
+    BuyerName: String Tên người mua hàng 
+    Status: String Tình trạng giao dịch 
+    Reason: String Lý do thất bại (nếu có) 
+    Message: String Mô tả trạng thái 
+    Month: Integer Chu kỳ trả góp 
+    BankCode: String Mã ngân hàng trả góp 
+    BankName: String Tên ngân hàng trả góp 
+    Method: String Loại thẻ 1900-58-58-99 (Số máy lẻ 4)  13 
+    TransactionTime: Long thời gian thực hiện thanh toán (millisecond) 
+    SuccessTime: Long Thời gian thanh toán thành công (millisecond) 
+    BankHotline: String Số Hotline của ngân hàng trả góp 
+    MerchantFee: double Phí merchant 
+    PayerFee: double Phí người thanh toán 
+  200GetTransactionInfor:
