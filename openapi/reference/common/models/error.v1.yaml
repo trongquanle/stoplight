@@ -1,0 +1,50 @@
+openapi: '3.0.0'
+info:
+  title: error
+  version: '1.0'
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        devMSG:
+          description: 'Thông báo lỗi cho Developter. Mô tả chung về lỗi, cho phép Developer có thể nắm được vấn đề đang gặp phải.'
+          type: string
+        userMsg: 
+          description: 'Thông báo lỗi cho người dùng cuối. Tùy yêu cầu của dự án tích hợp mà thông báo này có thể được hiển thị lên hay không.'
+          type: string
+        errorCode:
+          description: 'Mã định danh của lỗi. Phục vụ vấn đề phân loại, tra cứu trong quá trình xử lý lỗi.'
+          type: string
+        moreInfo:
+          description: 'Thông tin chi tiết về lỗi. Có thể là mô tả hoặc đường dẫn tới thông tin về lỗi. Ví dụ: https://errorinfo.misa.com.vn/error/ms-0001'
+          type: string
+        traceId:
+          description: 'Mã tra cứu. Sử dụng trên các hệ thống tra cứu log, tracting như ELK, Jaeger,... hoặc search trên file log của hệ thống.'
+          type: string
+      required:
+        - devMSG
+        - errorCode
+        - traceId
+    validationFailure:
+      type: object
+      properties:
+        property:
+          type: string
+          description: 'Tên thuộc tính.'
+        failureReason:
+          type: string
+          description: 'Lý do validate lỗi.'
+
+    validationError:
+      allOf:
+        - $ref: '#/components/schemas/error'
+        - type: object
+          properties:
+            validationFailures:
+              description: 'Danh sách lỗi validate chi tiết.'
+              type: array
+              items:
+                $ref: '#/components/schemas/validationFailure'
+
+

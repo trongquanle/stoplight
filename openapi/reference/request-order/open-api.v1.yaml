@@ -1,0 +1,32 @@
+openapi: '3.0.0'
+info:
+  title: API Khởi tạo thanh toán
+  description: Api này cho phép Merchant gửi 1 yêu cầu thanh toán đơn hàng JETPAY.
+  version: '1.0'
+servers:
+- url: http://localhost:3000/api/v1
+  desciption: môi trường local
+paths:
+  /order:
+    post:
+      summary: Nhận đơn hàng mà phía Merchant gửi lên, sau đó chuyển hướng sang phía api cổng thanh toán Alepay
+      tags:
+      - order
+      requestBody:
+        content:
+          application/json:
+            schema: '#ref/components/schemas/orderRequest'
+      description: Thông tin đơn hàng phía Merchant
+      responses:
+        '201': 
+          description: Chuyển hướng tới checkoutUrl để user thực hiện thanh toán
+        '400':
+          $ref: '#components/response400'
+        '500':
+          $ref: '#components/response500'
+      operationId: create-order
+components:
+  schemas:
+    orderRequest:
+      $ref: models/orderRequest.v1-yaml
+

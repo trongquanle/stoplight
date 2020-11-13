@@ -1,0 +1,80 @@
+title: orderRequest
+type: object
+properties:
+  Id:
+    type: string
+    description: id đơn hàng
+  OrderCode:
+    type: string
+    description: Mã đơn hàng của Merchant
+  Amount:
+    type: double
+    description: Giá trị đơn hàng
+  Currency:
+    type: string
+    description: Loại tiền tệ (VND, USD)
+  OrderDescription:
+    type: string
+    description: Mô tả đơn hàng
+  TotalItem:
+    type: integer
+    description: Tổng số sản phẩm trong đơn hàng
+  CheckoutType:
+    type: integer
+    description: Loại thanh toán
+  Installment:
+    type: boolean
+    description: Đơn hàng chỉ cho phép trả góp (Phải truyền lên cả month, bankCode và paymentMethod ); Đơn hàng cho phép trả góp hoặc thanh toán thường
+  Month:
+    type: string
+    description: Thông tin chu kỳ trả góp(3,6,9,12,24 tháng)
+  BankCode:
+    type: string
+    description: Mã ngân hàng cho phép User thực hiện thanh toán bằng ATM, IB,  QRCODE Mã ngân hàng cho phép User thực hiện thanh toán trả góp với thẻ quốc tế 
+  PaymentMethod:
+    type: string
+    description: Phương thức thanh toán
+  ReturnUrl:
+    type: string
+    description: URL Alepay sẽ callback lại Jetpay khi user thanh toán thành công.
+  CancelUrl:
+    type: string
+    description: URL Alepay sẽ callback lại Merchant khi user từ chối thanh toán checkout.
+  BuyerName:
+    type: String - required
+    description: Tên người mua hàng
+  BuyerEmail:
+    type: string
+    description: Email người mua hàng
+  BuyerAddress:
+    type: string
+    description: Địa chỉ người mua
+  BuyerCity:
+    type: string
+    description: Tên thành phố của người mua
+  BuyerCountry:
+    type: string
+    description: Tên quốc gia của người mua
+  PaymentHours:
+    type: string
+    description: Thời gian cho phép thanh toán (tính bằng giờ)
+  PromotionCode:
+    type: string
+    description: Mã chương trình khuyến mại
+  AllowDomestic:
+    type: boolean
+    description: True Cho phép thanh toán bằng thẻ ATM/ IB hoặc QRCODE, false Cho phép chỉ thanh toán bằng thẻ quốc tế
+required:
+  - Id
+  - OrderCode
+  - Amount
+  - Currency
+  - OrderDescription
+  - TotalItem
+  - ReturnUrl
+  - CancelUrl
+  - BuyerName
+  - BuyerEmail
+  - BuyerAddress
+  - BuyerCity
+  - BuyerCountry
